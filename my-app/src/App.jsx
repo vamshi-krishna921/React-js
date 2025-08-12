@@ -1,6 +1,7 @@
 import React from "react";
 //* Importing cards from cards.jsx
 import Cards from "./cards";
+import Events from "./Events";
 
 const App = () => {
   return (
@@ -31,8 +32,9 @@ const App = () => {
     // </div>
 
     //* using component from other file (component rendering)
-     <main className="w-[100vw] min-h-screen flex justify-center items-center gap-10 flex-wrap">
-      <Cards />
+     <main className="w-[100vw] min-h-screen flex justify-center items-center gap-4 flex-wrap bg-zinc-400">
+      {/* <Cards /> */}
+      <Events/>
     </main>
   );
 };
