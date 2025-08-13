@@ -36,9 +36,9 @@ function Usehook() {
       {/* <button onClick={()=>setValue({...value, isBoolean: !value.isBoolean})} className="px-4.5 py-2.5 bg-sky-400 text-xl rounded hover:transform-translate hover:-translate-y-0.5 duration-100 hover:shadow shadow-sky-900">
         Click me
       </button> */}
-      {/* <button onClick={() => setValue({...value, isBoolean: !value.isBoolean})} className="px-4.5 py-2.5 bg-sky-400 text-xl rounded hover:transform-translate hover:-translate-y-0.5 duration-100 hover:shadow shadow-sky-900">
+      <button onClick={() => setValue({...value, isBoolean: !value.isBoolean})} className="px-4.5 py-2.5 bg-sky-400 text-xl rounded hover:transform-translate hover:-translate-y-0.5 duration-100 hover:shadow shadow-sky-900">
         Click me
-      </button> */}
+      </button>
     </div>
   )
 }
