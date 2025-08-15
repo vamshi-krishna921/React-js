@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6";
 
 //* Begineer useState
 // function Usehook() {
@@ -271,12 +272,16 @@ function Usehook() {
       <img
         src="https://images.unsplash.com/photo-1514897575457-c4db467cf78e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt=""
-        className={`w-full h-full object-cover shrink-0 transition-transform ${!val? "-translate-x-[0%]" : "-translate-x-[100%]"}`}
+        className={`w-full h-full object-cover shrink-0 transition-transform ${
+          !val ? "-translate-x-[0%]" : "-translate-x-[100%]"
+        } duration-200 ease-in`}
       />
       <img
         src="https://images.unsplash.com/photo-1503416997304-7f8bf166c121?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt=""
-        className={`w-full h-full object-cover shrink-0 transition-transform ${!val? "-translate-x-[0%]" : "-translate-x-[100%]"} `}
+        className={`w-full h-full object-cover shrink-0 transition-transform ${
+          !val ? "-translate-x-[0%]" : "-translate-x-[100%]"
+        }  duration-200 ease-in`}
       />
       <div
         onClick={() =>
@@ -286,7 +291,7 @@ function Usehook() {
         }
         className="absolute bottom-2 left-[40%] size-15 rounded-full bg-zinc-300/40 flex justify-center items-center"
       >
-        <FaArrowRight />
+        {!val ? <FaArrowRight /> : <FaArrowLeft />}
       </div>
     </div>
   );
