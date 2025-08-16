@@ -109,6 +109,9 @@ const App = () => {
       ? setValue([...value, data])
       : setValue([...value]);
   };
+ const handleRemove = (id) => {
+  setValue(value.filter((_, index) => index !== id));
+};
 
   return (
     //* using component from other file (component rendering)
@@ -137,8 +140,8 @@ const App = () => {
       </div> */}
       {/* <FormHandling/> */}
       <div className="w-[90%] h-[80%] flex flex-col justify-center items-center gap-2.5">
-        <Dynamic_cardsHandle data={value} />
-        <Form handleSubmitData={handleSubmitData} />
+        <Dynamic_cardsHandle data={value}  handleRemove={handleRemove}/>
+        <Form handleSubmitData={handleSubmitData}/>
       </div>
     </main>
   );
