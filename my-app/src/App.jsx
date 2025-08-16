@@ -7,6 +7,8 @@ import Props from "./Props";
 import AddtoFav from "./AddtoFav";
 import Navbar from "./Navbar";
 import FormHandling from "./FormHandling";
+import Dynamic_cardsHandle from "./Dynamic_cardsHandle";
+import Form from "./Form";
 
 const App = () => {
   // const data = [
@@ -99,6 +101,15 @@ const App = () => {
   //     });
   //   });
   // };
+
+  //* Dynamic_cardsHandle
+  const [value, setValue] = useState([]);
+  const handleSubmitData = (data) => {
+    data.image.trim() != "" && data.name.trim() && data.gmail.trim()
+      ? setValue([...value, data])
+      : setValue([...value]);
+  };
+
   return (
     //* using component from other file (component rendering)
     <main className="w-[100vw] h-screen flex justify-center items-center gap-4 flex-wrap bg-zinc-200 overflow-x-hidden">
@@ -124,7 +135,11 @@ const App = () => {
           ))}
         </div>
       </div> */}
-      <FormHandling/>
+      {/* <FormHandling/> */}
+      <div className="w-[90%] h-[80%] flex flex-col justify-center items-center gap-2.5">
+        <Dynamic_cardsHandle data={value} />
+        <Form handleSubmitData={handleSubmitData} />
+      </div>
     </main>
   );
 };
