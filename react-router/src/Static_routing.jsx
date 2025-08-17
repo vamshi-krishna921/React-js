@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, NavLink } from "react-router-dom";
 import Home from "./Components/Home.jsx";
 import About from "./Components/About.jsx";
 import Contact from "./Components/Contact.jsx";
@@ -10,29 +10,64 @@ function Static_routing() {
   return (
     <>
       <nav className="w-screen h-[8vh] flex items-center justify-center gap-3.5 bg-zinc-100">
-        <Link to="/" className="text-md hover:text-zinc-700">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-500 text-md font-bold"
+              : "text-zinc-500 text-md hover:text-zinc-700"
+          }
+        >
           Home
-        </Link>
-        <Link to="/About" className="text-md hover:text-zinc-700">
+        </NavLink>
+        <NavLink
+          to="/About"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-500 text-md font-bold"
+              : "text-zinc-500 text-md hover:text-zinc-700"
+          }
+        >
           About
-        </Link>
-        <Link to="/Contact" className="text-md hover:text-zinc-700">
+        </NavLink>
+        <NavLink
+          to="/Contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-500 text-md font-bold"
+              : "text-zinc-500 text-md hover:text-zinc-700"
+          }
+        >
           Contact
-        </Link>
-        <Link to="/Services" className="text-md hover:text-zinc-700">
+        </NavLink>
+        <NavLink
+          to="/Services"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-500 text-md font-bold"
+              : "text-zinc-500 text-md hover:text-zinc-700"
+          }
+        >
           Services
-        </Link>
-        <Link to="/Products" className="text-md hover:text-zinc-700">
+        </NavLink>
+        <NavLink
+          to="/Products"
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue-500 text-md font-bold"
+              : "text-zinc-500 text-md hover:text-zinc-700"
+          }
+        >
           Products
-        </Link>
+        </NavLink>
       </nav>
 
-      <Routes>
+       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Services" element={<Services />} />
-        <Route path="/Products" element={<Products />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </>
   );
