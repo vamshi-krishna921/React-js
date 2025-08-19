@@ -41,7 +41,7 @@ function Product_details() {
         <h1 className="text-5xl font-semibold">{product.name}</h1>
         <h3 className="text-2xl font-semibold">{product.price}</h3>
         <p className="text-xl font-light">{product.description}</p>
-      </div>
+      </div> 
     </div>
   );
 }
