@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Link, Routes, Route, NavLink } from "react-router-dom";
+import React from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
 import Home from "./Components/Home.jsx";
 import About from "./Components/About.jsx";
 import Contact from "./Components/Contact.jsx";
 import Services from "./Components/Services.jsx";
 import Products from "./Components/Products.jsx";
+import Product_details from "./Components/Product_details.jsx";
 
 function Static_routing() {
   return (
@@ -21,7 +22,7 @@ function Static_routing() {
           Home
         </NavLink>
         <NavLink
-          to="/About"
+          to="/about"
           className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
@@ -31,7 +32,7 @@ function Static_routing() {
           About
         </NavLink>
         <NavLink
-          to="/Contact"
+          to="/contact"
           className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
@@ -41,7 +42,7 @@ function Static_routing() {
           Contact
         </NavLink>
         <NavLink
-          to="/Services"
+          to="/services"
           className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
@@ -51,7 +52,7 @@ function Static_routing() {
           Services
         </NavLink>
         <NavLink
-          to="/Products"
+          to="/products"
           className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
@@ -62,14 +63,16 @@ function Static_routing() {
         </NavLink>
       </nav>
 
-       <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:name" element={<Product_details />} />
       </Routes>
     </>
   );
 }
+
 export default Static_routing;
