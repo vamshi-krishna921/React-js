@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import Api from "../utils/Api";
 import axios from "axios";
 
 function Products() {
-  const [products, setProducts] = useState([]);
-  const api = "https://fakestoreapi.in/api/products";
+  const [prodts, setProducts] = useState([]);
+
 
   const fetchApi = () => {
-    axios
-      .get(api)
+    Api
+      .get("/products")
       .then((response) => {
-        setProducts(response.data.products); // save data in state
+        setProducts(response.data); 
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
@@ -26,8 +27,8 @@ function Products() {
     <>
       <div className="flex items-center gap-2 flex-col justify-center h-screen text-2xl">
         <div className="flex gap-3 w-full h-[90%] bg-amber-200 flex-wrap overflow-auto p-4">
-          {products.map((item, index) => (
-            <div
+          {prodts.map((item, index) => (
+             <div
               key={index}
               className="w-1/4 min-w-[200px] bg-white p-4 shadow-lg rounded-lg"
             >
