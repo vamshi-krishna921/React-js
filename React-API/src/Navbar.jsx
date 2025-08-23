@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home.jsx";
 import Products from "./Components/Products.jsx";
+import ProductDetails from "./Components/ProductDetails.jsx";
 import Services from "./Components/Services.jsx";
 
 function Navbar() {
@@ -22,6 +23,7 @@ function Navbar() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:name" element= {<ProductDetails/>} />
         <Route path="/services" element={<Services />} />
       </Routes>
     </>
