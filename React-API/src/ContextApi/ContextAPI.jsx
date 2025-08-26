@@ -4,16 +4,22 @@ import { createContext } from "react";
 export const ProductContext = createContext();
 
 const ContextApi = (props) => {
-    const [products, setProducts] = useState([
-        {id: 1, name: "Mango", category: "Fruits", price: 200},
-        {id: 2, name: "Banana", category: "Fruits", price: 50},
-        {id: 3, name: "Orange", category: "Fruits", price: 100},
-        {id: 4, name: "Apple", category: "Fruits", price: 150},
-    ]);
-    console.log(products);
+    // const [products, setProducts] = useState([
+    //     {id: 1, name: "Mango", category: "Fruits", price: 200},
+    //     {id: 2, name: "Banana", category: "Fruits", price: 50},
+    //     {id: 3, name: "Orange", category: "Fruits", price: 100},
+    //     {id: 4, name: "Apple", category: "Fruits", price: 150},
+    // ]);
+    // console.log(products);
+    
+    //* Light and dark mode
+    const [theme, setTheme] = useState("light");
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    }
     
   return (
-    <ProductContext.Provider value={{products, setProducts}}>
+    <ProductContext.Provider value={{theme, toggleTheme}}>
       {props.children}
     </ProductContext.Provider>
   );

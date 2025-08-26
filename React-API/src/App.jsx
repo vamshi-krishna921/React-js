@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { ProductContext } from "./ContextApi/ContextAPI";
+import { useContext } from "react";
 
 function App() {
   // const api = "https://fakestoreapi.in/api/products";
@@ -15,6 +17,9 @@ function App() {
   //       console.error("There was an error fetching the data!", error);
   //     });
   // };
+
+  //* Light and dark mode
+  const { theme, toggleTheme } = useContext(ProductContext);
 
   return (
     // <div className="flex items-center gap-2 flex-col justify-center h-screen text-2xl">
@@ -38,8 +43,9 @@ function App() {
     //     ))}
     //   </div>
     // </div>
-    <main className="w-full min-h-screen">
-      <Navbar />
+    <main className={`w-full min-h-screen ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}>
+      <Navbar/>
+      <button onClick={toggleTheme} className="p-5 bg-amber-600 text-md rounded-2xl text-white">{theme === "light" ? "Light mode" : "Dark mode"}</button>
     </main>
   );
 }
