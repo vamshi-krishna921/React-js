@@ -3,6 +3,7 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Products } from "./components/Products";
 import { Services } from "./components/Services";
+import ProductDetails from "./components/ProductDetails";
 
 export const Navbar = () => {
   return (
@@ -47,6 +48,7 @@ export const Navbar = () => {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </>
   );

@@ -1,7 +1,42 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 export const Products = () => {
+  const { data, isError, isLoading, refetch } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await axios.get("https://fakestoreapi.com/products");
+      return res.data;
+    },
+  });
+  if (isLoading) return <h1 className="text-center font-bold text-green-300 ">Loading...</h1>;
+  if (isError) return <h1>Something went wrong...</h1>;
   return (
-    <div>Products</div>
-  )
-}
+    <div className="w-full flex flex-col justify-center items-center mt-5 gap-6">
+      <h1 className="font-bold text-2xl">Our Products</h1>
+      <div className="w-full flex justify-center items-center gap-6 flex-wrap p-6">
+        {data.map((product) => {
+          return (
+            <Link to={`/products/${product.id}`} key={product.id}>
+              <div className="w-82 h-126 bg-green-300 flex flex-col justify-start items-center gap-2 p-2 rounded-md cursor-pointer overflow-hidden">
+                <div className="w-full shrink-0 h-60 bg-gray-200 flex justify-center rounded-md items-center overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+                <h1 className="text-xl font-bold">{product.title}</h1>
+                <p className="text-md">{product.price}</p>
+                <p className="text-md">{product.description}</p>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+};

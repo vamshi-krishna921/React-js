@@ -1,10 +1,12 @@
-import React from 'react';
-import Navbar from './Navbar';
+import React from "react";
+import Navbar from "./Navbar";
 
 const App = () => {
   return (
-    <Navbar />
-  )
-}
+    <main className="w-full overflow-x-hidden">
+      <Navbar />
+    </main>
+  );
+};
 
-export default App
+export default App;
