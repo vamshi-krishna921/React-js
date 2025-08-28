@@ -12,7 +12,10 @@ export const Products = () => {
       return res.data;
     },
   });
-  if (isLoading) return <h1 className="text-center font-bold text-green-300 ">Loading...</h1>;
+  if (isLoading)
+    return (
+      <h1 className="text-center font-bold text-green-300 ">Loading...</h1>
+    );
   if (isError) return <h1>Something went wrong...</h1>;
   return (
     <div className="w-full flex flex-col justify-center items-center mt-5 gap-6">
@@ -23,12 +26,12 @@ export const Products = () => {
             <Link to={`/products/${product.id}`} key={product.id}>
               <div className="w-82 h-126 bg-green-300 flex flex-col justify-start items-center gap-2 p-2 rounded-md cursor-pointer overflow-hidden">
                 <div className="w-full shrink-0 h-60 bg-gray-200 flex justify-center rounded-md items-center overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <h1 className="text-xl font-bold">{product.title}</h1>
                 <p className="text-md">{product.price}</p>
                 <p className="text-md">{product.description}</p>
