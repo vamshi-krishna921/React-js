@@ -3,14 +3,30 @@ import { Link } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const Products = () => {
+  // const { data, isError, isLoading, refetch } = useQuery({
+  //   queryKey: ["products"],
+  //   queryFn: async () => {
+  //     const res = await axios.get("https://fakestoreapi.com/products");
+  //     return res.data;
+  //   },
+  // });
+  //* Pagination Example
+  const [page, setPage] = useState(1);
+
   const { data, isError, isLoading, refetch } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", page],
     queryFn: async () => {
-      const res = await axios.get("https://fakestoreapi.com/products");
+      const res = await axios.get(
+        `https://jsonplaceholder.typicode.com/posts?_start=${
+          (page - 1) * 10
+        }&_limit=10`
+      );
       return res.data;
     },
+    keepPreviousData: true,
   });
   if (isLoading)
     return (
@@ -39,6 +55,26 @@ export const Products = () => {
             </Link>
           );
         })}
+      </div>
+      <div className="w-full flex justify-center items-center gap-6 mb-6">
+        <button
+          disabled={page === 1}
+          onClick={() => setPage((prev) => prev - 1)}
+          className={`px-3 py-2 ${
+            page === 1
+              ? "bg-gray-300 shadow-gray-600"
+              : "bg-green-300 shadow-green-600"
+          } shadow`}
+        >
+          Prev
+        </button>
+        <h1>{page}</h1>
+        <button
+          onClick={() => setPage((prev) => prev + 1)}
+          className="px-3 py-2 bg-green-300 shadow shadow-green-600"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
