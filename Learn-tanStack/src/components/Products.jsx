@@ -41,6 +41,20 @@ export const Products = () => {
     },
   });
 
+  //* Update Product Example
+  const updateProduct = useMutation({
+    mutationFn: async (id) => {
+      await Api.put(`/posts/${id}`, {
+        title: "Updated Title",
+        body: "Updated Body",
+        userId: 1,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products", page] });
+    },
+  });
+
   if (isLoading)
     return (
       <h1 className="text-center font-bold text-green-300 ">Loading...</h1>
@@ -52,7 +66,11 @@ export const Products = () => {
       <div className="w-full flex justify-center items-center gap-6 flex-wrap p-6">
         {data.map((product) => {
           return (
-            <Link className="cursor-default" to={`/products/${product.id}`} key={product.id}>
+            <Link
+              className="cursor-default"
+              to={`/products/${product.id}`}
+              key={product.id}
+            >
               <div className="w-82 h-126  bg-green-300 flex flex-col justify-start items-center gap-2 p-2 rounded-md overflow-hidden">
                 <div className="w-full shrink-0 h-60 bg-gray-200 flex justify-center rounded-md items-center overflow-hidden">
                   <img
@@ -72,6 +90,15 @@ export const Products = () => {
                   className="px-4 py-2 cursor-pointer bg-red-400 shadow shadow-red-600 rounded-2xl"
                 >
                   Delete
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    updateProduct.mutate(product.id);
+                  }}
+                  className="px-4 py-2 cursor-pointer bg-yellow-400 shadow shadow-yellow-600 rounded-2xl"
+                >
+                  Update
                 </button>
               </div>
             </Link>
