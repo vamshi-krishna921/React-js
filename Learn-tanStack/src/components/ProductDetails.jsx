@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import APi from "../Utils/Api";
 import { useQuery } from "@tanstack/react-query";
 
 function ProductDetails() {
@@ -8,7 +8,7 @@ function ProductDetails() {
   const { data, isError, isLoading } = useQuery({
     queryKey: ["product", id],
     queryFn: async () => {
-      const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+      const res = await APi.get(`/posts/${id}`);
       return res.data;
     },
   });

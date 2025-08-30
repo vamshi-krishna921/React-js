@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
-import axios from "axios";
+import Api from  "../Utils/Api";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ export const Products = () => {
   // const { data, isError, isLoading, refetch } = useQuery({
   //   queryKey: ["products"],
   //   queryFn: async () => {
-  //     const res = await axios.get("https://fakestoreapi.com/products");
+  //     const res = await Api.get(`/products`);
   //     return res.data;
   //   },
   // });
@@ -19,8 +19,8 @@ export const Products = () => {
   const { data, isError, isLoading, refetch } = useQuery({
     queryKey: ["products", page],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://jsonplaceholder.typicode.com/posts?_start=${
+      const res = await Api.get(
+        `/posts?_start=${
           (page - 1) * 10
         }&_limit=10`
       );
