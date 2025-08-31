@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import Api from "../Utils/Api";
+import { useInView } from "react-intersection-observer";
+import Api from "../Utils/Api.jsx";
+
 
 export const InfiniteScroll = () => {
   const fetchUsers = async ({ pageParam = 1 }) => {
@@ -23,23 +25,37 @@ export const InfiniteScroll = () => {
     },
   });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const bottom =
-        Math.ceil(window.innerHeight + window.scrollY) >=
-        document.documentElement.scrollHeight - 1;
+  //* Normal approach
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const bottom =
+  //       Math.ceil(window.innerHeight + window.scrollY) >=
+  //       document.documentElement.scrollHeight - 1;
 
-      if (bottom && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
-      }
-    };
+  //     if (bottom && hasNextPage && !isFetchingNextPage) {
+  //       fetchNextPage();
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll); // ✅ cleanup
-    };
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll); // ✅ cleanup
+  //   };
+  // }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+//* Using Intersection Observer API
+const { ref, inView } = useInView({
+  threshold: 1,
+});
+
+useEffect(() => {
+  if(inView && hasNextPage && !isFetchingNextPage){
+    fetchNextPage();
+  }
+}, [inView, fetchNextPage, hasNextPage, isFetchingNextPage])
+
+
 
   if (isLoading)
     return <h1 className="text-center font-bold text-green-300">Loading...</h1>;
@@ -70,11 +86,13 @@ export const InfiniteScroll = () => {
         </div>
       ))}
 
-      {isFetchingNextPage && (
+      <div ref={ref}>
+        {isFetchingNextPage && (
         <p className="text-center mt-4 font-semibold text-blue-500">
           Loading more...
         </p>
       )}
+      </div>
     </div>
   );
 };
