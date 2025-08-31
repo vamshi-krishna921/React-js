@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Products } from "./components/Products";
-import { Services } from "./components/Services";
+import { InfiniteScroll } from "./components/InfiniteScroll";
 import ProductDetails from "./components/ProductDetails";
 
 export const Navbar = () => {
@@ -11,7 +11,7 @@ export const Navbar = () => {
       <div className="w-full h-[10vh] bg-gray-200 flex justify-center items-center gap-6">
         <NavLink
           to="/"
-          className={({ isActive }) => 
+          className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
               : "text-zinc-500 text-md hover:text-zinc-700"
@@ -22,7 +22,7 @@ export const Navbar = () => {
         </NavLink>
         <NavLink
           to="/products"
-          className={({ isActive }) => 
+          className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
               : "text-zinc-500 text-md hover:text-zinc-700"
@@ -32,22 +32,22 @@ export const Navbar = () => {
           Products
         </NavLink>
         <NavLink
-          to="/services"
-          className={({ isActive }) => 
+          to="/InfiniteScroll"
+          className={({ isActive }) =>
             isActive
               ? "text-blue-500 text-md font-bold"
               : "text-zinc-500 text-md hover:text-zinc-700"
           }
-          element={<Services />}
+          element={<InfiniteScroll />}
         >
-          Services
+          InfiniteScroll
         </NavLink>
       </div>
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/InfiniteScroll" element={<InfiniteScroll />} />
         <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </>
