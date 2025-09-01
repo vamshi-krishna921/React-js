@@ -1,8 +1,11 @@
 import React from 'react'
+import Todo from './Todo'
 
 function App() {
   return (
-    <div className='text-xl uppercase font-semibold'>Its redux learning session</div>
+    <main className='min-h-screen w-full bg-gray-200 flex items-center justify-center py-7'>
+      <Todo/>
+    </main>
   )
 }
 
