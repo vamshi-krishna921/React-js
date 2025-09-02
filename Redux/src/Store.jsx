@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 
-const ADD_TASK = "task/add";
-const REMOVE_TASK = "task/remove";
+export const ADD_TASK = "task/add";
+export const REMOVE_TASK = "task/remove";
 const initialState = {
   tasks: [],
 };
@@ -20,9 +20,3 @@ const taskReducer = (state = initialState, action) => {
 };
 
 export const store = createStore(taskReducer);
-store.dispatch({ type: ADD_TASK, payload : "Learn Redux" });
-store.dispatch({ type: ADD_TASK, payload : "Learn RTK" });
-console.log(store.getState());
-
-// store.dispatch({ type: REMOVE_TASK, payload : 1 });
-// console.log(store.getState());
