@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
-import { ADD_TASK, REMOVE_TASK } from "./Store";
+import { ADD_TASK, REMOVE_TASK, fetchTasks} from "./Store";
 
 function Todo() {
   const state = useSelector((state) => state.tasks);
@@ -17,6 +17,11 @@ function Todo() {
   //* Remove task
   function HandleRemoveTask(index){
     dispatch({type: REMOVE_TASK, payload: index})
+  }
+
+  //* Fetch Tasks from API
+  function handleFetchTasks() {
+    dispatch(fetchTasks());
   }
   return (
     <div className="w-[40%] min-h-1/2 bg-gray-100 shadow-lg rounded-lg flex flex-col items-center justify-start gap-5 px-6 py-1.5">
@@ -35,7 +40,9 @@ function Todo() {
           />
           <input
             type="submit"
-            value="Add Task"
+            // value="Add Task"
+            value="Fetch Tasks"
+            onClick={() => handleFetchTasks()}
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
           />
         </form>
