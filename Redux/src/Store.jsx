@@ -52,7 +52,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 //* creaete slice
 const taskReducer = createSlice({
   name : "tasks",
-  initialState : ["Learn Redux", "Learn React"],
+  initialState : ["Learn Redux", "Learn React", "Learn JavaScript"],
   reducers : {
     addTask : (state, action) => {
       state.push(action.payload)
